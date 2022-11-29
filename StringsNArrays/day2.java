@@ -17,6 +17,23 @@ public class day2{
     return max_value;
   }
 
+  public static double findMaxAverageSolution2(int[] nums, int k){
+    int[] sum = new int[nums.length];
+    sum[0] = nums[0];
+
+    for(int i = 0; i < nums.length; i++){
+      sum[i] = sum[i - 1] + nums[i];
+    }
+
+    double result = sum[k - 1] * 1.0 / k;
+
+    for(int i = 0; i < nums.length; i++){
+      result = Math.max(result, (sum[i] - sum[i - k] * 1.0 / k));
+    }
+
+    return result;
+  }
+
   public static int findLongestOnes(int[] nums, int k){
     int left = 0, right;
 
